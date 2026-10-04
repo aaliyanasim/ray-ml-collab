@@ -1,0 +1,34 @@
+stages:
+  prepare:
+    cmd: python src/prepare.py --raw-data data/raw/financial_fraud_detection_dataset.csv --train-out data/processed/train.csv --test-out data/processed/test.csv
+    deps:
+      - src/prepare.py
+      - data/raw/financial_fraud_detection_dataset.csv
+    params:
+      - seed
+      - prepare.test_size
+    outs:
+      - data/processed/train.csv
+      - data/processed/test.csv
+
+  train:
+    cmd: python src/train.py --train-data data/processed/train.csv --model-out models/model.joblib
+    deps:
+      - src/train.py
+      - data/processed/train.csv
+    params:
+      - seed
+      - train.n_estimators
+      - train.max_depth
+    outs:
+      - models/model.joblib
+
+  evaluate:
+    cmd: python src/evaluate.py --test-data data/processed/test.csv --model models/model.joblib --metrics-out metrics.json
+    deps:
+      - src/evaluate.py
+      - data/processed/test.csv
+      - models/model.joblib
+    metrics:
+      - metrics.json:
+          cache: false

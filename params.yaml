@@ -1,0 +1,9 @@
+seed: 42
+
+prepare:
+  test_size: 0.2
+
+train:
+  n_estimators: 200
+  max_depth: 8
+  class_weight: balanced_subsample
