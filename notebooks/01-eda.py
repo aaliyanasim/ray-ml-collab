@@ -77,7 +77,12 @@ plt.show()
 # training.
 
 # %%
-pd.crosstab(df["is_fraud"], df["fraud_type"].notna(), rownames=["is_fraud"], colnames=["fraud_type is set"])
+pd.crosstab(
+    df["is_fraud"],
+    df["fraud_type"].notna(),
+    rownames=["is_fraud"],
+    colnames=["fraud_type is set"],
+)
 
 # %% [markdown]
 # ## Transaction amount by class
