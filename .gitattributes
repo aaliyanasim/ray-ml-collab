@@ -1,0 +1,12 @@
+# Normalize line endings so the repo is reproducible across OSes.
+# Lock files especially must stay byte-stable.
+* text=auto eol=lf
+
+# Binary assets (DVC-tracked data/models and images)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pkl binary
+*.joblib binary
+*.parquet binary
+*.csv binary
