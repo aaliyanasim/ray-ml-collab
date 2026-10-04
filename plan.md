@@ -27,8 +27,14 @@ push to `main` in Phase 2).
 - **Repository:** `https://github.com/aaliyanasim/ray-ml-collab`
 - **Team name:** `ray`
 - **Dataset:** ✅ **Financial Fraud Detection Dataset** — tabular binary classification.
-  Record the exact source link in `README.md`/`REPORT.md` (credit the source). ⚠️ If the raw file
-  exceeds ~50 MB, use a fixed, reproducible sample so DVC and CI stay fast.
+  - Raw file: `financial_fraud_detection_dataset.csv`, **759.17 MB / 5,000,000 rows / 18 columns**.
+  - Target: `is_fraud`. ⚠️ `fraud_type` is populated only on fraud rows (direct leakage) → drop it;
+    review identifier/PII columns (`transaction_id`, `sender_account`, `receiver_account`,
+    `ip_address`, `device_hash`, raw `timestamp`).
+  - ⚠️ **Size decision required:** the raw file is ~15× the assignment's ~50 MB guidance. Use a
+    **fixed, reproducible sample** (documented generator, fixed seed, fraud rate preserved) as the
+    canonical DVC-tracked dataset so `dvc pull`, `dvc repro` and CI stay fast.
+  - Record the exact source link in `README.md`/`REPORT.md` (credit the source).
 - **Submission:** repo link + `REPORT.md` + tag `model-v1.0` on `main` that a stranger can reproduce.
 
 ### Branching model (reference — one-way flow)
