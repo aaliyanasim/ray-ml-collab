@@ -1,0 +1,47 @@
+# Guard rails (Phase 3). Install once per clone: `pre-commit install`.
+# Keep hook `rev`s in sync with pyproject.toml where they overlap (ruff).
+#
+# NOTE: revisions are pinned to known-good tags. If GitHub is reachable,
+# run `pre-commit autoupdate` occasionally to bump them.
+# Hook environments use the interpreter that runs pre-commit; install/run it
+# through the project venv (`uv run pre-commit ...`) so it matches `uv.lock`.
+
+# Never scan generated/binary artifacts or the environment.
+exclude: |
+  (?x)^(
+    \.venv/|
+    \.dvc/cache/|
+    data/.*\.(csv|parquet|xlsx|zip)|
+    models/.*\.(pkl|joblib|h5|pt|onnx)|
+    \.secrets\.baseline
+  )$
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=1024"] # block files > 1 MB
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: detect-private-key
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.10
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+      - id: ruff-format
+
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.8.1
+    hooks:
+      - id: nbstripout
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        args: ["--baseline", ".secrets.baseline"]
