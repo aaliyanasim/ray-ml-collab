@@ -1,6 +1,21 @@
-data/
-models/
+# ---- Data & models: real files ignored, DVC pointers (*.dvc) tracked ----
+data/**/*.csv
+data/**/*.parquet
+data/**/*.xlsx
+data/**/*.zip
+models/**/*.pkl
+models/**/*.joblib
+models/**/*.h5
+models/**/*.pt
+models/**/*.onnx
+
+# ---- Environment & secrets ----
 .env
-__pycache__/
 .venv/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+
+# ---- Experiment tracking ----
 mlruns/
