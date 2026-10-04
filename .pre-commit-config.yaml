@@ -45,3 +45,5 @@ repos:
     hooks:
       - id: detect-secrets
         args: ["--baseline", ".secrets.baseline"]
+        # DVC pointer/lock files hold md5 content hashes, which look like hex secrets.
+        exclude: (\.dvc|dvc\.lock)$
