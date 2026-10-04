@@ -17,8 +17,18 @@ Everyone writes code and reviews teammates' pull requests.
 ## Dataset
 
 - **Financial Fraud Detection Dataset** — tabular binary classification (fraud / not fraud).
-- Source: _TODO — add the exact link here and credit it in `REPORT.md`._
-- If the raw file is larger than ~50 MB, a fixed, reproducible sample is used so DVC and CI stay fast.
+- Source: [Financial Transactions Dataset for Fraud Detection](https://www.kaggle.com/datasets/aryan208/financial-transactions-dataset-for-fraud-detection)
+  by aryan208 on Kaggle.
+- The full file (`financial_fraud_detection_dataset.csv`, ~759 MB, 5,000,000 rows, 18 columns,
+  fraud rate 3.59%) is too large for the ~50 MB guidance, so the canonical DVC-tracked dataset is a
+  fixed **300,000-row stratified sample** (seed 42, fraud rate preserved, ~45.5 MB) at
+  `data/raw/financial_fraud_detection_dataset.csv`. Fetch it with `dvc pull`.
+- To regenerate the sample from the full download (byte-identical output for the same input):
+
+  ```bash
+  uv run python src/make_sample.py --raw-data <path/to/full.csv> \
+      --out data/raw/financial_fraud_detection_dataset.csv
+  ```
 
 ## Branching model
 
