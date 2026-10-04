@@ -76,9 +76,11 @@ largely synthetic dataset; the value of the project is the reproducible workflow
 | #11 | data: track raw dataset sample with DVC | yahyamobeen | Merged |
 | #12 | feat: EDA notebook + bucket_hour | Rehan00122 | Merged |
 | #13 | fix: declare numpy dependency | aaliyanasim | Merged |
-| #14 | feat: class_weight param, promote best experiment | Rehan00122 | Open → merge to `dev` |
-| #15 | fix: declare matplotlib dependency | aaliyanasim | Open → merge to `dev` |
-| #16 | docs: add REPORT.md | Rehan00122 | Open → merge to `dev` |
+| #14 | feat: class_weight param, promote best experiment | Rehan00122 | Merged |
+| #15 | fix: declare numpy dependency | aaliyanasim | Merged |
+| #16 | docs: add REPORT.md | Rehan00122 | Merged |
+| #17 | fix: declare matplotlib dependency | aaliyanasim | Open → merge to `dev` |
+| #18 | docs: expand REPORT.md (screenshots + contributions) | aaliyanasim | Open → merge to `dev` |
 
 **Cross-checks required by the assignment:**
 - **Data-update PR:** #11 (DVC sample).
@@ -118,10 +120,18 @@ prefixes, and the PR review checklist (also mirrored in the PR template).
 
 ## 7. Screenshots
 
-<!-- TODO: attach the provided images and update the paths -->
-1. **Blocked large file / secret** (pre-commit) — see attached image.
-2. **Failing CI check** (Phase 8 red-check demo, blocked merge) — see attached image.
-3. **Passing CI check** — see attached image.
+**Phase 3 — pre-commit blocks a >1 MB file and a fake secret** (commit aborted in both cases):
+
+![Pre-commit blocks a 5 MB file and a fake AWS key](docs/screenshots/phase3-precommit-blocked.png)
+
+**Phase 8 — a deliberately failing test gives a red check that blocks merging**
+(shows the red `Tests (pytest)`, the skipped smoke job, the green `Lint (ruff)`, and the
+"Merging is blocked" banner):
+
+![Failing CI check and blocked merge](docs/screenshots/phase8-ci-blocked.png)
+
+A standalone *passing* CI run is the same three checks all green (e.g. PR #14/#15); the image
+above already includes a successful `Lint (ruff)` check for contrast.
 
 ## 8. Contributions (one paragraph per member)
 
