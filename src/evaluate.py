@@ -1,4 +1,5 @@
 """Evaluate the trained fraud detection model on the held-out test split."""
+
 import argparse
 import json
 from pathlib import Path
@@ -12,9 +13,13 @@ TARGET_COLUMN = "is_fraud"
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Evaluate the trained model.")
-    parser.add_argument("--test-data", required=True, type=Path, help="Path to the prepared test CSV.")
+    parser.add_argument(
+        "--test-data", required=True, type=Path, help="Path to the prepared test CSV."
+    )
     parser.add_argument("--model", required=True, type=Path, help="Path to the trained model.")
-    parser.add_argument("--metrics-out", required=True, type=Path, help="Where to save metrics.json.")
+    parser.add_argument(
+        "--metrics-out", required=True, type=Path, help="Where to save metrics.json."
+    )
     return parser.parse_args()
 
 
