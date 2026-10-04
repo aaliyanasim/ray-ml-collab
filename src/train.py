@@ -1,4 +1,5 @@
 """Train the fraud detection model on the prepared training split."""
+
 import argparse
 from pathlib import Path
 
@@ -12,8 +13,12 @@ TARGET_COLUMN = "is_fraud"
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Train the fraud detection model.")
-    parser.add_argument("--train-data", required=True, type=Path, help="Path to the prepared training CSV.")
-    parser.add_argument("--model-out", required=True, type=Path, help="Where to save the trained model.")
+    parser.add_argument(
+        "--train-data", required=True, type=Path, help="Path to the prepared training CSV."
+    )
+    parser.add_argument(
+        "--model-out", required=True, type=Path, help="Where to save the trained model."
+    )
     parser.add_argument("--params", type=Path, default=Path("params.yaml"))
     return parser.parse_args()
 
