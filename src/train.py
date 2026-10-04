@@ -34,6 +34,8 @@ def main():
     model = RandomForestClassifier(
         n_estimators=params["train"]["n_estimators"],
         max_depth=params["train"]["max_depth"],
+        class_weight=params["train"].get("class_weight"),
+        n_jobs=-1,
         random_state=params["seed"],
     )
     model.fit(X_train, y_train)
